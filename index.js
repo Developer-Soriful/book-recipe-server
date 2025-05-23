@@ -87,7 +87,7 @@ app.put("/users/:id", async (req, res) => {
 
   res.send(result);
 });
-
+// patch route to increment likeCount
 app.patch("/users/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -122,4 +122,4 @@ app.listen(port, () => {
   console.log(`✅ Server is running on port ${port}`);
 });
 
-// Connect to MongoDB
+// commit 1
