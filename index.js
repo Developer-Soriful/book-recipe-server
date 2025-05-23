@@ -3,10 +3,8 @@ import express from "express";
 import cors from "cors";
 
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
-
+const port = process.env.PORT || 3000;
 import dotenv from "dotenv";
-
-import serverless from "serverless-http";
 
 // Load environment variables
 
@@ -136,6 +134,10 @@ app.delete("/users/:id", async (req, res) => {
   res.send(result);
 });
 
-// Export for Vercel
+// // Export for Vercel
 
-export default serverless(app);
+// export default serverless(app);
+
+app.listen(post, () => {
+  console.log(`✅ Server is running on port ${port}`);
+});
