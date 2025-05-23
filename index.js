@@ -118,10 +118,8 @@ app.delete("/users/:id", async (req, res) => {
   res.send(result);
 });
 
-// // Export for Vercel
-
-// export default serverless(app);
-
 app.listen(port, () => {
   console.log(`✅ Server is running on port ${port}`);
 });
+
+// Connect to MongoDB
