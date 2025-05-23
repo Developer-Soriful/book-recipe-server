@@ -99,7 +99,7 @@ app.patch("/users/:id", async (req, res) => {
 
   res.send(result);
 });
-
+// this is for data insertOne in database
 app.post("/users", async (req, res) => {
   const user = req.body;
 
