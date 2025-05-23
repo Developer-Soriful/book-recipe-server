@@ -32,25 +32,9 @@ const client = new MongoClient(uri, {
   },
 });
 
-let usersCollection;
-
-// Connect to DB
-
-async function connectDB() {
-  try {
-    await client.connect();
-
-    const database = client.db("users");
-
-    usersCollection = database.collection("users");
-
-    console.log("✅ MongoDB connected.");
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-  }
-}
-
-connectDB();
+const database = client.db("users");
+const usersCollection = database.collection("users");
+// connectDB();
 
 // ----------- ROUTES (no `/api` prefix!) -------------
 
@@ -138,6 +122,6 @@ app.delete("/users/:id", async (req, res) => {
 
 // export default serverless(app);
 
-app.listen(post, () => {
+app.listen(port, () => {
   console.log(`✅ Server is running on port ${port}`);
 });
