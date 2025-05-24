@@ -2,9 +2,9 @@
 
 A user-friendly full-stack Recipe Book App that allows users to discover, add, manage, and interact with delicious recipes. Built with **React**, **Firebase**, **Express.js**, and **MongoDB**, the app includes features like top recipes, wishlist, user authentication, like system, and more — tailored for food lovers.
 
-🔗 **Live Website:** [https://recipebookapp-client.netlify.app]([https://recipebookapp-client.netlify.app](https://assignment-10-auth-1f744.web.app/))  
-📦 **Client Repository:** [GitHub Client]([https://github.com/your-username/recipe-book-client](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-Developer-Soriful))  
-🛠️ **Server Repository:** [GitHub Server]([https://github.com/your-username/recipe-book-server](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Developer-Soriful))
+🔗 **Live Website:** [https://assignment-10-auth-1f744.web.app](https://assignment-10-auth-1f744.web.app)  
+📦 **Client Repository:** [GitHub Client](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-Developer-Soriful)  
+🛠️ **Server Repository:** [GitHub Server](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Developer-Soriful)
 
 ---
 
@@ -20,7 +20,7 @@ A user-friendly full-stack Recipe Book App that allows users to discover, add, m
   - `react-awesome-reveal`
   - `react-simple-typewriter`
 - 📱 **Fully Responsive Design** (Mobile, Tablet & Desktop)
-- ☁️ **Client hosted on Netlify**, **Server on Vercel**
+- ☁️ **Client hosted on Firebase**, **Server on Vercel**
 
 ---
 
@@ -48,7 +48,7 @@ A user-friendly full-stack Recipe Book App that allows users to discover, add, m
 
 | Frontend         | Backend       | Auth           | Database  | Deployment |
 |------------------|----------------|----------------|-----------|------------|
-| React, Tailwind  | Express.js     | Firebase Auth  | MongoDB   | Netlify (client), Vercel (server) |
+| React, Tailwind  | Express.js     | Firebase Auth  | MongoDB   | Firebase (client), Vercel (server) |
 
 ---
 
