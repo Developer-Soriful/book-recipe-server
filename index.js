@@ -10,7 +10,11 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://assignment-10-auth-1f744.web.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://assignment-10-auth-1f744.web.app",
+      "https://book-recipe-server.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -36,7 +40,9 @@ async function connectDB() {
   try {
     await client.connect();
     await client.db("admin").command({ ping: 1 });
-    console.log("✅ Connected to MongoDB! You successfully connected to MongoDB!");
+    console.log(
+      "✅ Connected to MongoDB! You successfully connected to MongoDB!"
+    );
   } catch (err) {
     console.error("❌ MongoDB connection error:", err);
   }
@@ -50,28 +56,35 @@ app.get("/toprecipe", async (req, res) => {
     res.send(topRecipe);
   } catch (err) {
     console.error("Error fetching top recipes:", err);
-    res.status(500).send({ error: "Failed to get top recipes", details: err.message });
+    res
+      .status(500)
+      .send({ error: "Failed to get top recipes", details: err.message });
   }
 });
 
-// this routes for recipes filtering 
-app.get("/recipes", async (req, res) =>{
-  const {cuisine} = req.query;
-  const query = {}
-  if(cuisine && cuisine !== "All"){
-    query.cuisine = cuisine ; 
+// this routes for recipes filtering
+app.get("/recipes", async (req, res) => {
+  const { cuisine } = req.query;
+  const query = {};
+  if (cuisine && cuisine !== "All") {
+    query.cuisine = cuisine;
   }
   const result = await usersCollection.find(query).toArray();
   res.send(result);
-})
+});
 // user get routes
 app.get("/users", async (req, res) => {
   try {
-    const users = await usersCollection.find().sort({likeCount: -1}).toArray();
+    const users = await usersCollection
+      .find()
+      .sort({ likeCount: -1 })
+      .toArray();
     res.send(users);
   } catch (err) {
     console.error("Error fetching users:", err);
-    res.status(500).send({ error: "Failed to get users", details: err.message });
+    res
+      .status(500)
+      .send({ error: "Failed to get users", details: err.message });
   }
 });
 
@@ -101,7 +114,9 @@ app.get("/users/email/:email", async (req, res) => {
     res.send(user);
   } catch (err) {
     console.error(`Error fetching user with email ${req.params.email}:`, err);
-    res.status(500).send({ error: "Failed to get user by email", details: err.message });
+    res
+      .status(500)
+      .send({ error: "Failed to get user by email", details: err.message });
   }
 });
 // user post route
@@ -115,7 +130,9 @@ app.post("/users", async (req, res) => {
     res.status(201).send(result);
   } catch (err) {
     console.error("Error inserting user:", err);
-    res.status(500).send({ error: "Failed to insert user", details: err.message });
+    res
+      .status(500)
+      .send({ error: "Failed to insert user", details: err.message });
   }
 });
 
@@ -128,7 +145,9 @@ app.put("/users/:id", async (req, res) => {
     const filter = { _id: new ObjectId(id) };
     const updateUserData = req.body;
     if (!updateUserData || Object.keys(updateUserData).length === 0) {
-      return res.status(400).send({ error: "Request body cannot be empty for update" });
+      return res
+        .status(400)
+        .send({ error: "Request body cannot be empty for update" });
     }
     const options = { upsert: true };
     const updateDoc = { $set: updateUserData };
@@ -140,7 +159,9 @@ app.put("/users/:id", async (req, res) => {
     res.send(result);
   } catch (err) {
     console.error(`Error updating user with ID ${req.params.id}:`, err);
-    res.status(500).send({ error: "Failed to update user", details: err.message });
+    res
+      .status(500)
+      .send({ error: "Failed to update user", details: err.message });
   }
 });
 
@@ -155,12 +176,19 @@ app.patch("/users/:id", async (req, res) => {
     const result = await usersCollection.updateOne(filter, updatedDoc);
 
     if (result.matchedCount === 0) {
-      return res.status(404).send({ error: "User not found for like increment" });
+      return res
+        .status(404)
+        .send({ error: "User not found for like increment" });
     }
     res.send(result);
   } catch (err) {
-    console.error(`Error incrementing likeCount for user ID ${req.params.id}:`, err);
-    res.status(500).send({ error: "Failed to increment likeCount", details: err.message });
+    console.error(
+      `Error incrementing likeCount for user ID ${req.params.id}:`,
+      err
+    );
+    res
+      .status(500)
+      .send({ error: "Failed to increment likeCount", details: err.message });
   }
 });
 
@@ -179,7 +207,9 @@ app.delete("/users/:id", async (req, res) => {
     res.send(result);
   } catch (err) {
     console.error(`Error deleting user with ID ${req.params.id}:`, err);
-    res.status(500).send({ error: "Failed to delete user", details: err.message });
+    res
+      .status(500)
+      .send({ error: "Failed to delete user", details: err.message });
   }
 });
 
