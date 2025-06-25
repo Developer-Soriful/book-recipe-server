@@ -54,9 +54,20 @@ app.get("/toprecipe", async (req, res) => {
   }
 });
 
+// this routes for recipes filtering 
+app.get("/recipes", async (req, res) =>{
+  const {cuisine} = req.query;
+  const query = {}
+  if(cuisine && cuisine !== "All"){
+    query.cuisine = cuisine ; 
+  }
+  const result = await usersCollection.find(query).toArray();
+  res.send(result);
+})
+// user get routes
 app.get("/users", async (req, res) => {
   try {
-    const users = await usersCollection.find().toArray();
+    const users = await usersCollection.find().sort({likeCount: -1}).toArray();
     res.send(users);
   } catch (err) {
     console.error("Error fetching users:", err);
@@ -93,7 +104,7 @@ app.get("/users/email/:email", async (req, res) => {
     res.status(500).send({ error: "Failed to get user by email", details: err.message });
   }
 });
-
+// user post route
 app.post("/users", async (req, res) => {
   try {
     const user = req.body;
