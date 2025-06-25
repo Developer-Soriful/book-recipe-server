@@ -14,6 +14,7 @@ app.use(
       "http://localhost:5173",
       "https://assignment-10-auth-1f744.web.app",
       "https://book-recipe-server.vercel.app",
+      "https://prismatic-bombolone-cfb6f1.netlify.app"
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
